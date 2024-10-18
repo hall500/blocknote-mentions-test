@@ -1,22 +1,34 @@
 import {
   BlockNoteSchema,
   defaultInlineContentSpecs,
+  defaultStyleSpecs,
   filterSuggestionItems,
-} from '@blocknote/core';
-import '@blocknote/core/fonts/inter.css';
-import { BlockNoteView } from '@blocknote/mantine';
-import '@blocknote/mantine/style.css';
+} from "@blocknote/core";
+import "@blocknote/core/fonts/inter.css";
+import { BlockNoteView } from "@blocknote/mantine";
+import "@blocknote/mantine/style.css";
 import {
   DefaultReactSuggestionItem,
+  FormattingToolbar,
+  FormattingToolbarController,
   SuggestionMenuController,
   useCreateBlockNote,
-} from '@blocknote/react';
+} from "@blocknote/react";
 
-import { Mention } from './Mention';
+import { Mention } from "./Mention";
+import {
+  commentStyleSpec,
+  CommentToolbarController,
+  CreateCommentButton,
+} from "@defensestation/blocknote-comments";
 
 // Our schema with inline content specs, which contain the configs and
 // implementations for inline content  that we want our editor to use.
 const schema = BlockNoteSchema.create({
+  styleSpecs: {
+    ...defaultStyleSpecs,
+    comment: commentStyleSpec,
+  },
   inlineContentSpecs: {
     // Adds all default inline content.
     ...defaultInlineContentSpecs,
@@ -25,23 +37,33 @@ const schema = BlockNoteSchema.create({
   },
 });
 
+const CustomFormattingToolbar = () => (
+  <FormattingToolbarController
+    formattingToolbar={() => (
+      <FormattingToolbar>
+        <CreateCommentButton key={"createCommentButton"} />
+      </FormattingToolbar>
+    )}
+  />
+);
+
 // Function which gets all users for the mentions menu.
 const getMentionMenuItems = (
   editor: typeof schema.BlockNoteEditor
 ): DefaultReactSuggestionItem[] => {
   const mentions = [
     {
-      id: 'mention1',
-      mentionType: 'task',
-      mentionId: 'taskId',
-      title: 'Hello Task',
+      id: "mention1",
+      mentionType: "task",
+      mentionId: "taskId",
+      title: "Hello Task",
     },
-    { id: 'mention2', mentionType: 'user', mentionId: 'userId', title: 'John' },
+    { id: "mention2", mentionType: "user", mentionId: "userId", title: "John" },
     {
-      id: 'mention3',
-      mentionType: 'user',
-      mentionId: 'userId2',
-      title: 'Mary',
+      id: "mention3",
+      mentionType: "user",
+      mentionId: "userId2",
+      title: "Mary",
     },
   ];
 
@@ -50,12 +72,12 @@ const getMentionMenuItems = (
     onItemClick: () => {
       editor.insertInlineContent([
         {
-          type: 'mention',
+          type: "mention",
           props: {
             ...mention,
           },
         },
-        ' ', // add a space after the mention
+        " ", // add a space after the mention
       ]);
     },
   }));
@@ -64,54 +86,43 @@ const getMentionMenuItems = (
 export function App() {
   const editor = useCreateBlockNote({
     schema,
-    initialContent: [
-      {
-        type: 'paragraph',
-        content: 'Welcome to this demo!',
-      },
-      {
-        type: 'paragraph',
-        content: [
-          {
-            type: 'mention',
-            props: {
-              id: 'mention2',
-              mentionType: 'user',
-              mentionId: 'userId',
-              title: 'John',
-            },
-          },
-          {
-            type: 'text',
-            text: ' <- This is an example mention',
-            styles: {},
-          },
-        ],
-      },
-      {
-        type: 'paragraph',
-        content: "Press the '@' key to open the mentions menu and add another",
-      },
-      {
-        type: 'paragraph',
-      },
-    ],
   });
 
   const editorChanged = () => {
-    console.log(editor.document);
+    const editorData = editor.document;
+    const mentions = editorData
+      .flatMap((ed) => {
+        // Check if ed.content is an array
+        if (Array.isArray(ed.content)) {
+          // Filter mentions from ed.content
+          return ed.content.filter((con) => con.type === "mention");
+        }
+        // Return an empty array if ed.content is not an array
+        return [];
+      })
+      .map((mention: any) => mention.props);
+
+    console.log(mentions);
   };
 
+  if (!editor) return <div>Loading Editor...</div>;
+
   return (
-    <BlockNoteView editor={editor} onChange={editorChanged}>
+    <BlockNoteView
+      editor={editor}
+      onChange={editorChanged}
+      formattingToolbar={false}
+    >
       {/* Adds a mentions menu which opens with the "@" key */}
       <SuggestionMenuController
-        triggerCharacter={'@'}
+        triggerCharacter={"@"}
         getItems={async (query) =>
           // Gets the mentions menu items
           filterSuggestionItems(getMentionMenuItems(editor), query)
         }
       />
+      <CustomFormattingToolbar />
+      <CommentToolbarController />
     </BlockNoteView>
   );
 }
