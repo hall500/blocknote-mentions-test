@@ -3,28 +3,45 @@ import { createReactInlineContentSpec } from '@blocknote/react';
 // The Mention inline content.
 export const Mention = createReactInlineContentSpec(
   {
-    type: 'mention',
+    type: "mention",
     propSchema: {
       title: {
-        default: 'Unknown',
+        default: "Unknown",
       },
       id: {
-        default: 'Unknown',
+        default: "Unknown",
       },
       mentionType: {
-        default: 'Unknown',
+        default: "Unknown",
       },
       mentionId: {
-        default: 'Unknown',
+        default: "Unknown",
+      },
+      timestamp: {
+        default: "Unknown",
       },
     },
-    content: 'none',
+    content: "none",
   },
   {
     render: (props) => (
-      <span style={{ backgroundColor: '#8400ff33' }}>
+      <span style={{ backgroundColor: "#8400ff33" }}>
         @{props.inlineContent.props.title}
       </span>
     ),
   }
 );
+
+export interface MentionProps {
+  id: string;
+  mentionType: string;
+  mentionId: string;
+  title: string;
+}
+
+export interface ContentItems {
+  content: {
+    type: string;
+    props?: MentionProps;
+  }[];
+}

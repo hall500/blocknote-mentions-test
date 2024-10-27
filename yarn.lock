@@ -215,13 +215,13 @@
     to-fast-properties "^2.0.0"
 
 "@blocknote/ariakit@latest":
-  version "0.16.0"
-  resolved "https://registry.yarnpkg.com/@blocknote/ariakit/-/ariakit-0.16.0.tgz#92c230a4e9cf48b8c3e0226530ee332aee8d049d"
-  integrity sha512-2eJlCUlZ5vxgiexMzrBRnzwwoTddcZ0O0KYGQCeQqYBR4WtIq0QSAeXMV3KdY8E3sH+93lSiHDhXePnT4a+Y4A==
+  version "0.17.1"
+  resolved "https://registry.yarnpkg.com/@blocknote/ariakit/-/ariakit-0.17.1.tgz#23706dd4e2b85a95e5e17eff1aa90dedd9a20ad5"
+  integrity sha512-CoDyuphfZxfRcP/AfEnjyKWBwlQMLruxJwHzR7Ls8doW2R+snQ+Ds9WF33zeLhGPn92x/sWLCjGHdzhjFhZmiA==
   dependencies:
     "@ariakit/react" "^0.4.3"
-    "@blocknote/core" "^0.16.0"
-    "@blocknote/react" "^0.16.0"
+    "@blocknote/core" "^0.17.1"
+    "@blocknote/react" "^0.17.1"
     react "^18"
     react-dom "^18"
 
@@ -270,57 +270,10 @@
     y-protocols "^1.0.5"
     yjs "^13.6.1"
 
-"@blocknote/core@^0.16.0":
-  version "0.16.0"
-  resolved "https://registry.yarnpkg.com/@blocknote/core/-/core-0.16.0.tgz#3904da086c4241d1bce41c3c1bdb910e68fe9eff"
-  integrity sha512-egX+GjlAB8r/zaox278zNTTUMNVRHVQ2qVlPHQZgGOXSDq2Z+Lm7i4xKYMz/UT/IdrL7iGxnHrAsbc0H/kqc9A==
-  dependencies:
-    "@emoji-mart/data" "^1.2.1"
-    "@tiptap/core" "^2.7.1"
-    "@tiptap/extension-bold" "^2.7.1"
-    "@tiptap/extension-code" "^2.7.1"
-    "@tiptap/extension-collaboration" "^2.7.1"
-    "@tiptap/extension-collaboration-cursor" "^2.7.1"
-    "@tiptap/extension-dropcursor" "^2.7.1"
-    "@tiptap/extension-gapcursor" "^2.7.1"
-    "@tiptap/extension-hard-break" "^2.7.1"
-    "@tiptap/extension-history" "^2.7.1"
-    "@tiptap/extension-horizontal-rule" "^2.7.1"
-    "@tiptap/extension-italic" "^2.7.1"
-    "@tiptap/extension-link" "^2.7.1"
-    "@tiptap/extension-paragraph" "^2.7.1"
-    "@tiptap/extension-strike" "^2.7.1"
-    "@tiptap/extension-table-cell" "^2.7.1"
-    "@tiptap/extension-table-header" "^2.7.1"
-    "@tiptap/extension-table-row" "^2.7.1"
-    "@tiptap/extension-text" "^2.7.1"
-    "@tiptap/extension-underline" "^2.7.1"
-    "@tiptap/pm" "^2.7.1"
-    emoji-mart "^5.6.0"
-    hast-util-from-dom "^4.2.0"
-    prosemirror-model "^1.21.0"
-    prosemirror-state "^1.4.3"
-    prosemirror-tables "^1.3.7"
-    prosemirror-transform "^1.9.0"
-    prosemirror-view "^1.33.7"
-    rehype-format "^5.0.0"
-    rehype-parse "^8.0.4"
-    rehype-remark "^9.1.2"
-    rehype-stringify "^9.0.3"
-    remark-gfm "^3.0.1"
-    remark-parse "^10.0.1"
-    remark-rehype "^10.1.0"
-    remark-stringify "^10.0.2"
-    unified "^10.1.2"
-    uuid "^8.3.2"
-    y-prosemirror "1.2.12"
-    y-protocols "^1.0.6"
-    yjs "^13.6.15"
-
-"@blocknote/core@^0.17.0":
-  version "0.17.0"
-  resolved "https://registry.yarnpkg.com/@blocknote/core/-/core-0.17.0.tgz#c87e84ee8bd5b5d4c41e646002732d414d9f67f7"
-  integrity sha512-hvqOTgmYJejWczNb9wLCBEjE0lgrkmEJgqi+wka8Z2CRkLaMV4wB1XEoncjpjtoKJeJjvhmmGuCBrfoEoYgTWw==
+"@blocknote/core@^0.17.1":
+  version "0.17.1"
+  resolved "https://registry.yarnpkg.com/@blocknote/core/-/core-0.17.1.tgz#78ba9f31648f32a293e6605cea6c3569cbb28551"
+  integrity sha512-wNfdmzCBjghVZMT3Wm7IbAXPm0u2YuPkYxz8YdW8qyvk+6U+Hp60WVcBv/phGiomFfhJ4R+u0tEwD6mXDCyLrg==
   dependencies:
     "@emoji-mart/data" "^1.2.1"
     "@tiptap/core" "^2.7.1"
@@ -365,12 +318,12 @@
     yjs "^13.6.15"
 
 "@blocknote/mantine@latest":
-  version "0.16.0"
-  resolved "https://registry.yarnpkg.com/@blocknote/mantine/-/mantine-0.16.0.tgz#513dadfe0c2891319ee684e1084a91b7ea983699"
-  integrity sha512-5jLXuKWz6xoba8odYv8+SalLSSE5YdYEvtuQyEO605VTtm37VELyjI5Tswwv/mcTd3th2AR3g4GY0Zj/T07lZw==
+  version "0.17.1"
+  resolved "https://registry.yarnpkg.com/@blocknote/mantine/-/mantine-0.17.1.tgz#f701d4efdba81ab7c1f8cf89d0df013448130c06"
+  integrity sha512-K3Y+6uyhO70rBCAZDrW1/D+ZQm2/g6+QeN15XRq2d210IXsSVM051xgNyDEk2vpMYVNf+WJyRXHR3FoN2vc77A==
   dependencies:
-    "@blocknote/core" "^0.16.0"
-    "@blocknote/react" "^0.16.0"
+    "@blocknote/core" "^0.17.1"
+    "@blocknote/react" "^0.17.1"
     "@mantine/core" "^7.10.1"
     "@mantine/hooks" "^7.10.1"
     "@mantine/utils" "^6.0.21"
@@ -396,26 +349,12 @@
     react-icons "^4.3.1"
     use-prefers-color-scheme "^1.1.3"
 
-"@blocknote/react@^0.16.0":
-  version "0.16.0"
-  resolved "https://registry.yarnpkg.com/@blocknote/react/-/react-0.16.0.tgz#a5d7de21914aab467b2e849e34a4d00dc1732542"
-  integrity sha512-vEwAp4z1FBqcH75OEbEW/yd4nj8XcSKAzCElV7aL6nVhPiKgYzrzG/WVckTq1h9lMaGeAuYqLErww4IIsbiawg==
+"@blocknote/react@^0.17.1":
+  version "0.17.1"
+  resolved "https://registry.yarnpkg.com/@blocknote/react/-/react-0.17.1.tgz#2e10b3e6f610274995efd8ee6faa779b9bf0b178"
+  integrity sha512-9irtckfgxGcTmf+8JZF61l3slu6ET4famWUtPCOXcI7a1M8uSS86bagq19qYmPVutTnUXP6K8T6svOfUn14W7Q==
   dependencies:
-    "@blocknote/core" "^0.16.0"
-    "@floating-ui/react" "^0.26.4"
-    "@tiptap/core" "^2.7.1"
-    "@tiptap/react" "^2.7.1"
-    lodash.merge "^4.6.2"
-    react "^18"
-    react-dom "^18"
-    react-icons "^5.2.1"
-
-"@blocknote/react@^0.17.0":
-  version "0.17.0"
-  resolved "https://registry.yarnpkg.com/@blocknote/react/-/react-0.17.0.tgz#fe1ce962b2fe402798b4c6e764f06ea6a97a058c"
-  integrity sha512-a/ViJKyuC029nrGgVPey/+nIkspWkceW/WwhSWUymem8GfZAI02PJoUWq2riwhgaDsEDJyw7ufiVg6ZA8FvdPw==
-  dependencies:
-    "@blocknote/core" "^0.17.0"
+    "@blocknote/core" "^0.17.1"
     "@floating-ui/react" "^0.26.4"
     "@tiptap/core" "^2.7.1"
     "@tiptap/react" "^2.7.1"
@@ -425,12 +364,12 @@
     react-icons "^5.2.1"
 
 "@blocknote/shadcn@latest":
-  version "0.16.0"
-  resolved "https://registry.yarnpkg.com/@blocknote/shadcn/-/shadcn-0.16.0.tgz#eda8ccebe595fe8cece5ee7e9bc661a4ead98398"
-  integrity sha512-4mqvtvZgFBKyFtYrgWWokP+SbkRjaZJsEMsxKlnVb+XlYkT+KKzgvYjXQioySwcNOMhgAjOWK2bleZ7CfPT1Ww==
+  version "0.17.1"
+  resolved "https://registry.yarnpkg.com/@blocknote/shadcn/-/shadcn-0.17.1.tgz#a32c63f47fb78f669da9386546a1cadf15a54d4d"
+  integrity sha512-NU3DfOst3i76Mza2O02r7ohDnzzg1nCB+OP8po2+7wNxE0fLwfo1Z/TPBIJD8GOpBUqMNmYaa8pCXz0JkKUQgQ==
   dependencies:
-    "@blocknote/core" "^0.16.0"
-    "@blocknote/react" "^0.16.0"
+    "@blocknote/core" "^0.17.1"
+    "@blocknote/react" "^0.17.1"
     "@hookform/resolvers" "^3.6.0"
     "@radix-ui/react-dropdown-menu" "^2.0.6"
     "@radix-ui/react-label" "^2.0.2"
@@ -1480,9 +1419,9 @@
   integrity sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==
 
 "@vitejs/plugin-react@^4.3.1":
-  version "4.3.2"
-  resolved "https://registry.yarnpkg.com/@vitejs/plugin-react/-/plugin-react-4.3.2.tgz#1e13f666fe3135b477220d3c13b783704636b6e4"
-  integrity sha512-hieu+o05v4glEBucTcKMK3dlES0OeJlD9YVOAPraVMOInBCwzumaIFiUjr4bHK7NPgnAHgiskUoceKercrN8vg==
+  version "4.3.3"
+  resolved "https://registry.yarnpkg.com/@vitejs/plugin-react/-/plugin-react-4.3.3.tgz#28301ac6d7aaf20b73a418ee5c65b05519b4836c"
+  integrity sha512-NooDe9GpHGqNns1i8XDERg0Vsg5SSYRhRxxyTGogUdkdNt47jal+fbuYi+Yfq6pzRCKXyoPcWisfxE6RIM3GKA==
   dependencies:
     "@babel/core" "^7.25.2"
     "@babel/plugin-transform-react-jsx-self" "^7.24.7"
@@ -1837,9 +1776,9 @@ eastasianwidth@^0.2.0:
   integrity sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==
 
 electron-to-chromium@^1.5.28:
-  version "1.5.40"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.40.tgz#5f6aec13751123c5c3185999ebe3e7bcaf828c2b"
-  integrity sha512-LYm78o6if4zTasnYclgQzxEcgMoIcybWOhkATWepN95uwVVWV0/IW10v+2sIeHE+bIYWipLneTftVyQm45UY7g==
+  version "1.5.41"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.41.tgz#eae1ba6c49a1a61d84cf8263351d3513b2bcc534"
+  integrity sha512-dfdv/2xNjX0P8Vzme4cfzHqnPm5xsZXwsolTYr0eyW18IUmNyG08vL+fttvinTfhKfIKdRoqkDIC9e9iWQCNYQ==
 
 emoji-mart@^5.6.0:
   version "5.6.0"
@@ -3534,9 +3473,9 @@ react-dom@^18, react-dom@^18.2.0, react-dom@^18.3.1:
     scheduler "^0.23.2"
 
 react-hook-form@^7.52.0:
-  version "7.53.0"
-  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.53.0.tgz#3cf70951bf41fa95207b34486203ebefbd3a05ab"
-  integrity sha512-M1n3HhqCww6S2hxLxciEXy2oISPnAzxY7gvwVPrtlczTM/1dDadXgUxDpHMrMTblDOcm/AXtXxHwZ3jpg1mqKQ==
+  version "7.53.1"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.53.1.tgz#3f2cd1ed2b3af99416a4ac674da2d526625add67"
+  integrity sha512-6aiQeBda4zjcuaugWvim9WsGqisoUk+etmFEsSUMm451/Ic8L/UAb7sRtMj3V+Hdzm6mMjU1VhiSzYUZeBm0Vg==
 
 react-icons@^4.3.1:
   version "4.12.0"

@@ -12,9 +12,10 @@
   },
   "dependencies": {
     "@blocknote/ariakit": "latest",
-    "@blocknote/core": "^0.17.0",
+    "@blocknote/core": "^0.12.4",
+    "@blocknote/react": "^0.12.4",
     "@blocknote/mantine": "latest",
-    "@blocknote/react": "^0.17.0",
+    "@mantine/core": "^7.7.1",
     "@blocknote/shadcn": "latest",
     "@defensestation/blocknote-comments": "^1.0.2",
     "react": "^18.3.1",

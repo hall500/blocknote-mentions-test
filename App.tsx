@@ -5,52 +5,26 @@ import {
   filterSuggestionItems,
 } from "@blocknote/core";
 import "@blocknote/core/fonts/inter.css";
-import { BlockNoteView } from "@blocknote/mantine";
 import "@blocknote/mantine/style.css";
+import "@blocknote/react/style.css";
 import {
   DefaultReactSuggestionItem,
-  FormattingToolbar,
-  FormattingToolbarController,
   SuggestionMenuController,
   useCreateBlockNote,
+  BlockNoteView,
 } from "@blocknote/react";
+import { commentStyleSpec } from "@defensestation/blocknote-comments";
 
-import { Mention } from "./Mention";
-import {
-  commentStyleSpec,
-  CommentToolbarController,
-  CreateCommentButton,
-} from "@defensestation/blocknote-comments";
+import { Mention, MentionProps } from "./Mention";
+import { CustomFormattingToolbar } from "./CustomFormattingToolbar";
 
-// Our schema with inline content specs, which contain the configs and
-// implementations for inline content  that we want our editor to use.
-const schema = BlockNoteSchema.create({
-  styleSpecs: {
-    ...defaultStyleSpecs,
-    comment: commentStyleSpec,
-  },
-  inlineContentSpecs: {
-    // Adds all default inline content.
-    ...defaultInlineContentSpecs,
-    // Adds the mention tag.
-    mention: Mention,
-  },
-});
-
-const CustomFormattingToolbar = () => (
-  <FormattingToolbarController
-    formattingToolbar={() => (
-      <FormattingToolbar>
-        <CreateCommentButton key={"createCommentButton"} />
-      </FormattingToolbar>
-    )}
-  />
-);
+const customStyleSpecs = {
+  ...defaultStyleSpecs,
+  comment: commentStyleSpec,
+};
 
 // Function which gets all users for the mentions menu.
-const getMentionMenuItems = (
-  editor: typeof schema.BlockNoteEditor
-): DefaultReactSuggestionItem[] => {
+const getMentionMenuItems = (editor: any): DefaultReactSuggestionItem[] => {
   const mentions = [
     {
       id: "mention1",
@@ -75,42 +49,101 @@ const getMentionMenuItems = (
           type: "mention",
           props: {
             ...mention,
+            timestamp: new Date().toISOString(),
           },
         },
-        " ", // add a space after the mention
+        " ",
       ]);
     },
   }));
 };
 
 export function App() {
+  const schema = BlockNoteSchema.create({
+    inlineContentSpecs: {
+      ...defaultInlineContentSpecs,
+      mention: Mention,
+    },
+    styleSpecs: customStyleSpecs,
+  });
+
   const editor = useCreateBlockNote({
     schema,
+    initialContent: [
+      {
+        id: "26de9ad9-8814-4633-8a02-4a6502da3ecf",
+        type: "paragraph",
+        props: {
+          textColor: "default",
+          backgroundColor: "default",
+          textAlignment: "left",
+        },
+        content: [
+          {
+            type: "text",
+            text: "Lorem Ipsum",
+            styles: {
+              bold: true,
+            },
+          },
+          {
+            type: "text",
+            text: " is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of ",
+            styles: {},
+          },
+          {
+            type: "text",
+            text: "Letraset",
+            styles: {
+              comment: "adsa dasdas das dasdasdas das",
+            },
+          },
+          {
+            type: "text",
+            text: " sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+            styles: {},
+          },
+        ],
+        children: [],
+      },
+      {
+        id: "d69d1ce8-7e59-48a3-8c87-99007ff81a7f",
+        type: "paragraph",
+        props: {
+          textColor: "default",
+          backgroundColor: "default",
+          textAlignment: "left",
+        },
+        content: [],
+        children: [],
+      },
+    ],
   });
 
   const editorChanged = () => {
     const editorData = editor.document;
-    const mentions = editorData
-      .flatMap((ed) => {
-        // Check if ed.content is an array
-        if (Array.isArray(ed.content)) {
-          // Filter mentions from ed.content
-          return ed.content.filter((con) => con.type === "mention");
-        }
-        // Return an empty array if ed.content is not an array
-        return [];
-      })
-      .map((mention: any) => mention.props);
+    const mentions = editorData.reduce((acc: MentionProps[], block: any) => {
+      if (block.content) {
+        acc.push(
+          ...block.content
+            .filter(
+              (item: any) => item.type === "mention" && item.props !== undefined
+            )
+            .map((mention: any) => mention.props as MentionProps)
+        );
+      }
+      return acc;
+    }, [] as MentionProps[]);
 
     console.log(mentions);
   };
 
-  if (!editor) return <div>Loading Editor...</div>;
-
   return (
     <BlockNoteView
-      editor={editor}
       onChange={editorChanged}
+      theme={"light"}
+      editable
+      editor={editor}
       formattingToolbar={false}
     >
       {/* Adds a mentions menu which opens with the "@" key */}
@@ -122,7 +155,6 @@ export function App() {
         }
       />
       <CustomFormattingToolbar />
-      <CommentToolbarController />
     </BlockNoteView>
   );
 }
