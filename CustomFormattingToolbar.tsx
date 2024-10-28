@@ -5,18 +5,21 @@ import {
   CreateLinkButton,
   FormattingToolbar,
   FormattingToolbarController,
-  //   ImageCaptionButton,
+  ImageCaptionButton,
   NestBlockButton,
-  //   ReplaceImageButton,
+  ReplaceImageButton,
   TextAlignButton,
   UnnestBlockButton,
   useEditorSelectionChange,
   useBlockNoteEditor,
 } from "@blocknote/react";
 import { BlockSchema, InlineContentSchema, StyleSchema } from "@blocknote/core";
+import { CreateCommentButton } from "./CreateCommentButton";
 import { useState } from "react";
-import { CreateCommentButton } from "@defensestation/blocknote-comments";
+// import { CreateCommentButton } from "@defensestation/blocknote-comments";
+// import { CustomBlockTypeDropdown } from "./CustomBlockTypeDropDown";
 
+// Code modified from `DefaultFormattingToolbar.tsx` in @blocknote/react
 export const CustomFormattingToolbar = () => {
   const editor = useBlockNoteEditor<
     BlockSchema,
@@ -51,8 +54,8 @@ export const CustomFormattingToolbar = () => {
         <FormattingToolbar>
           {/* <BlockTypeDropdown key={"blockTypeDropdown"} items={} /> */}
           {/* <CustomBlockTypeDropdown editor={editor}  /> */}
-          {/* <ImageCaptionButton key={"imageCaptionButton"} />
-          <ReplaceImageButton key={"replaceImageButton"} /> */}
+          <ImageCaptionButton key={"imageCaptionButton"} />
+          <ReplaceImageButton key={"replaceImageButton"} />
 
           <BasicTextStyleButton
             basicTextStyle={"bold"}
@@ -91,7 +94,7 @@ export const CustomFormattingToolbar = () => {
           <UnnestBlockButton key={"unnestBlockButton"} />
 
           <CreateLinkButton key={"createLinkButton"} />
-          <CreateCommentButton key={"commentButton"} />
+          <CreateCommentButton />
         </FormattingToolbar>
       )}
     />

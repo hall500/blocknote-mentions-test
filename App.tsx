@@ -95,7 +95,7 @@ export function App() {
             type: "text",
             text: "Letraset",
             styles: {
-              comment: "adsa dasdas das dasdasdas das",
+              comment: "{ id: commentId, content: commentContent }",
             },
           },
           {
