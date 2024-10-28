@@ -1,6 +1,5 @@
 import { useCallback, useMemo, useState } from "react";
 import { MdComment } from "react-icons/md";
-
 import {
   BlockNoteEditor,
   BlockSchema,
@@ -9,7 +8,6 @@ import {
   StyleImplementation,
   StyleSchema,
 } from "@blocknote/core";
-
 import {
   ToolbarButton,
   useBlockNoteEditor,
@@ -52,10 +50,12 @@ export const CreateCommentButton = () => {
   );
   const [comments, setComments] = useState([
     { id: "commentId1", content: "Here's a first comment" },
-    { id: "commentId1", content: "Here's another comment" },
-    { id: "commentId1", content: "And one more for good measure" },
+    { id: "commentId2", content: "Here's another comment" },
+    { id: "commentId3", content: "And one more for good measure" },
   ]);
   const [newComment, setNewComment] = useState("");
+  const [editCommentIndex, setEditCommentIndex] = useState<number | null>(null);
+  const [editContent, setEditContent] = useState("");
 
   useEditorContentOrSelectionChange(() => {
     if (commentInSchema) {
@@ -87,37 +87,43 @@ export const CreateCommentButton = () => {
     });
   };
 
+  const handleDelete = (index: number) => {
+    setComments((prevComments) => prevComments.filter((_, i) => i !== index));
+  };
+
+  const handleEditClick = (index: number) => {
+    setEditCommentIndex(index);
+    setEditContent(comments[index].content);
+  };
+
+  const handleEditSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (editCommentIndex !== null) {
+      setComments((prevComments) =>
+        prevComments.map((comment, i) =>
+          i === editCommentIndex
+            ? { ...comment, content: editContent }
+            : comment
+        )
+      );
+      setEditCommentIndex(null);
+      setEditContent("");
+    }
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (newComment) {
       setComments((prevComments) => [
         ...prevComments,
         {
-          id: "newcomment",
-          resourceType: "page",
-          resourceId: "pass-in-resourceid",
+          id: `comment-${Date.now()}`,
           content: newComment.trim(),
-          createdById: "createdByJohn",
         },
       ]);
       setNewComment("");
     }
   };
-
-  const update = useCallback(
-    (comment: string) => {
-      // @ts-ignore
-      editor.addStyles({ comment: comment });
-      editor.focus();
-      editor.domElement.focus();
-    },
-    [editor]
-  );
-
-  const onDelete = useCallback(() => {
-    // @ts-ignore
-    editor.removeStyles({ comment: "" });
-  }, [editor]);
 
   const show = useMemo(() => {
     if (!commentInSchema) {
@@ -154,23 +160,47 @@ export const CreateCommentButton = () => {
             {comments.map((comment, index) => (
               <li
                 key={index}
-                onClick={() => handleCommentClick(index)}
                 className="p-2 bg-gray-100 rounded cursor-pointer hover:bg-gray-200 transition-colors"
               >
                 {comment.content}
+                <div className="flex gap-2 mt-2">
+                  <Button size="xs" onClick={() => handleEditClick(index)}>
+                    Edit
+                  </Button>
+                  <Button
+                    size="xs"
+                    color="red"
+                    onClick={() => handleDelete(index)}
+                  >
+                    Delete
+                  </Button>
+                </div>
               </li>
             ))}
           </ul>
-          <form onSubmit={handleSubmit} className="flex gap-2">
-            <Input
-              type="text"
-              value={newComment}
-              onChange={(e) => setNewComment(e.target.value)}
-              placeholder="Add a comment..."
-              className="flex-grow"
-            />
-            <Button type="submit">Add</Button>
-          </form>
+          {editCommentIndex !== null ? (
+            <form onSubmit={handleEditSubmit} className="flex gap-2 mt-4">
+              <Input
+                type="text"
+                value={editContent}
+                onChange={(e) => setEditContent(e.target.value)}
+                placeholder="Edit comment..."
+                className="flex-grow"
+              />
+              <Button type="submit">Update</Button>
+            </form>
+          ) : (
+            <form onSubmit={handleSubmit} className="flex gap-2 mt-4">
+              <Input
+                type="text"
+                value={newComment}
+                onChange={(e) => setNewComment(e.target.value)}
+                placeholder="Add a comment..."
+                className="flex-grow"
+              />
+              <Button type="submit">Add</Button>
+            </form>
+          )}
         </div>
       </Popover.Dropdown>
     </Popover>
