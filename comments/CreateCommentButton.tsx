@@ -16,6 +16,13 @@ import {
 } from "@blocknote/react";
 import { Button, Input, Popover } from "@mantine/core";
 
+interface Comment {
+  id: string;
+  content: string;
+  parentId?: string;
+  attachmentIds?: string[];
+}
+
 function checkCommentInSchema(
   editor: BlockNoteEditor<BlockSchema, any, StyleSchema>
 ): editor is BlockNoteEditor<
@@ -48,11 +55,7 @@ export const CreateCommentButton = () => {
   const [active, setActive] = useState<boolean>(
     "comment" in editor.getActiveStyles()
   );
-  const [comments, setComments] = useState([
-    { id: "commentId1", content: "Here's a first comment" },
-    { id: "commentId2", content: "Here's another comment" },
-    { id: "commentId3", content: "And one more for good measure" },
-  ]);
+  const [comments, setComments] = useState<Comment[]>([]);
   const [newComment, setNewComment] = useState("");
   const [editCommentIndex, setEditCommentIndex] = useState<number | null>(null);
   const [editContent, setEditContent] = useState("");
@@ -75,20 +78,31 @@ export const CreateCommentButton = () => {
   const [text, setText] = useState<string>(editor.getSelectedText());
 
   useEditorContentOrSelectionChange(() => {
+    console.log(comments);
     setText(editor.getSelectedText() || "");
     setComment(getSelectedComment() || "");
   }, editor);
 
-  const handleCommentClick = (index: number) => {
-    setComments((prevComments) => {
-      const updatedComments = [...prevComments];
-      const [clickedComment] = updatedComments.splice(index, 1);
-      return [...updatedComments, clickedComment];
-    });
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (newComment) {
+      editor.addStyles({ comment: newComment as any }); //fix later: forced to any
+      editor.focus();
+      editor.domElement.focus();
+      setComments((prevComments: Comment[]) => [
+        ...prevComments,
+        {
+          id: `comment-${Date.now()}`,
+          content: newComment.trim(),
+        },
+      ]);
+      setNewComment("");
+    }
   };
 
   const handleDelete = (index: number) => {
     setComments((prevComments) => prevComments.filter((_, i) => i !== index));
+    editor.removeStyles({ comment: "" as any }); //fix later: forced to any for now
   };
 
   const handleEditClick = (index: number) => {
@@ -108,20 +122,6 @@ export const CreateCommentButton = () => {
       );
       setEditCommentIndex(null);
       setEditContent("");
-    }
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (newComment) {
-      setComments((prevComments) => [
-        ...prevComments,
-        {
-          id: `comment-${Date.now()}`,
-          content: newComment.trim(),
-        },
-      ]);
-      setNewComment("");
     }
   };
 

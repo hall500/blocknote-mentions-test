@@ -16,7 +16,7 @@ import {
 import { commentStyleSpec } from "@defensestation/blocknote-comments";
 
 import { Mention, MentionProps } from "./Mention";
-import { CustomFormattingToolbar } from "./CustomFormattingToolbar";
+import { CustomFormattingToolbar } from "./comments/CustomFormattingToolbar";
 
 const customStyleSpecs = {
   ...defaultStyleSpecs,
@@ -135,7 +135,7 @@ export function App() {
       return acc;
     }, [] as MentionProps[]);
 
-    console.log(mentions);
+    // console.log(mentions);
   };
 
   return (
