@@ -94,7 +94,7 @@ export const CustomFormattingToolbar = () => {
           <UnnestBlockButton key={"unnestBlockButton"} />
 
           <CreateLinkButton key={"createLinkButton"} />
-          <CreateCommentButton />
+          <CreateCommentButton key={"commentButton"} />
         </FormattingToolbar>
       )}
     />

@@ -13,14 +13,13 @@ import {
   useCreateBlockNote,
   BlockNoteView,
 } from "@blocknote/react";
-import { commentStyleSpec } from "@defensestation/blocknote-comments";
-
 import { Mention, MentionProps } from "./Mention";
 import { CustomFormattingToolbar } from "./comments/CustomFormattingToolbar";
+import { comment } from "./comments/Comment";
 
 const customStyleSpecs = {
   ...defaultStyleSpecs,
-  comment: commentStyleSpec,
+  comment: comment,
 };
 
 // Function which gets all users for the mentions menu.
