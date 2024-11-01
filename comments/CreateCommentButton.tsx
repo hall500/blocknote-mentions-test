@@ -44,7 +44,7 @@ function checkCommentInSchema(
   );
 }
 
-export const CreateCommentButton = () => {
+export const CreateCommentButton = ({ pageId }: { pageId: string }) => {
   const editor = useBlockNoteEditor<
     BlockSchema,
     InlineContentSchema,
@@ -55,7 +55,9 @@ export const CreateCommentButton = () => {
   const [active, setActive] = useState<boolean>(
     "comment" in editor.getActiveStyles()
   );
-  const [comments, setComments] = useState<Comment[]>([]);
+  const [comments, setComments] = useState<Comment[]>([
+    { id: "pageId", content: "Hello" },
+  ]);
   const [newComment, setNewComment] = useState("");
   const [editCommentIndex, setEditCommentIndex] = useState<number | null>(null);
   const [editContent, setEditContent] = useState("");
@@ -94,6 +96,8 @@ export const CreateCommentButton = () => {
         {
           id: `comment-${Date.now()}`,
           content: newComment.trim(),
+          resourceType: "page",
+          resourceId: pageId,
         },
       ]);
       setNewComment("");
@@ -164,13 +168,13 @@ export const CreateCommentButton = () => {
               >
                 {comment.content}
                 <div className="flex gap-2 mt-2">
-                  <Button size="xs" onClick={() => handleEditClick(index)}>
+                  <Button size="xs" onClick={(e) => handleEditClick(index)}>
                     Edit
                   </Button>
                   <Button
                     size="xs"
                     color="red"
-                    onClick={() => handleDelete(index)}
+                    onClick={(e) => handleDelete(index)}
                   >
                     Delete
                   </Button>

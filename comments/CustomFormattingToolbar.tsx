@@ -19,8 +19,7 @@ import { useState } from "react";
 // import { CreateCommentButton } from "@defensestation/blocknote-comments";
 // import { CustomBlockTypeDropdown } from "./CustomBlockTypeDropDown";
 
-// Code modified from `DefaultFormattingToolbar.tsx` in @blocknote/react
-export const CustomFormattingToolbar = () => {
+export const CustomFormattingToolbar = ({ pageId }: { pageId: string }) => {
   const editor = useBlockNoteEditor<
     BlockSchema,
     InlineContentSchema,
@@ -30,9 +29,6 @@ export const CustomFormattingToolbar = () => {
   useEditorSelectionChange(() => {
     const selection = editor.getSelection();
 
-    // Get the blocks in the current selection and store on the state. If
-    // the selection is empty, store the block containing the text cursor
-    // instead.
     let blocks = [];
     if (selection !== undefined) {
       blocks = selection.blocks;
@@ -52,8 +48,6 @@ export const CustomFormattingToolbar = () => {
     <FormattingToolbarController
       formattingToolbar={() => (
         <FormattingToolbar>
-          {/* <BlockTypeDropdown key={"blockTypeDropdown"} items={} /> */}
-          {/* <CustomBlockTypeDropdown editor={editor}  /> */}
           <ImageCaptionButton key={"imageCaptionButton"} />
           <ReplaceImageButton key={"replaceImageButton"} />
 
@@ -73,7 +67,6 @@ export const CustomFormattingToolbar = () => {
             basicTextStyle={"strike"}
             key={"strikeStyleButton"}
           />
-          {/* Extra button to toggle code styles */}
           <BasicTextStyleButton
             key={"codeStyleButton"}
             basicTextStyle={"code"}
@@ -94,7 +87,7 @@ export const CustomFormattingToolbar = () => {
           <UnnestBlockButton key={"unnestBlockButton"} />
 
           <CreateLinkButton key={"createLinkButton"} />
-          <CreateCommentButton key={"commentButton"} />
+          <CreateCommentButton key={"commentButton"} pageId={pageId} />
         </FormattingToolbar>
       )}
     />

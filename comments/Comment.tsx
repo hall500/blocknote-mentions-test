@@ -8,6 +8,7 @@ export const comment = createReactStyleSpec(
   },
   {
     render: (props) => {
+      console.log(props.value);
       const id = useMemo(() => new Date().valueOf().toString(), [props]);
       return (
         <span
