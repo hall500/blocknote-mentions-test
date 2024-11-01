@@ -8,14 +8,22 @@ export const comment = createReactStyleSpec(
   },
   {
     render: (props) => {
-      console.log(props.value);
-      const id = useMemo(() => new Date().valueOf().toString(), [props]);
+      const id = useMemo(() => {
+        const timestamp = new Date().valueOf();
+        const commentValue = props.value ? props.value.toString() : "";
+        return `comment-${timestamp}-${commentValue}`;
+      }, [props.value]);
+
       return (
         <span
           id={id}
           className="testing"
           ref={props.contentRef}
-          style={props.value ? { background: "#000", color: "#fff" } : {}}
+          style={
+            props.value
+              ? { borderBottom: "2px solid #000", backgroundColor: "#f0f0f0" }
+              : {}
+          }
         ></span>
       );
     },
